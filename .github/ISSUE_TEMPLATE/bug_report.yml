@@ -1,0 +1,57 @@
+name: Bug report
+description: Something is broken or behaving incorrectly
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. The fastest way to get this fixed is a minimal reproduction — ideally a bug/fix/tests trio, since that's literally the input format this tool already understands.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what actually happened instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: The exact command you ran, and the bug.py/fix.py/test_it.py content if applicable. Paste inline -- no need to attach files.
+      render: shell
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: chival-verify version
+      description: Output of `chival -V`
+      placeholder: "chival-verify 0.1.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - macOS
+        - Linux
+        - Windows
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: sandbox
+    attributes:
+      label: Sandbox backend
+      options:
+        - local (default)
+        - docker
+        - Not sure
+    validations:
+      required: true

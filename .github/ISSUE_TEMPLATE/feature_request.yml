@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest an improvement or a new capability
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filing: this repo stays deliberately small. Check [CONTRIBUTING.md](https://github.com/vihankatta/chival-verify/blob/main/CONTRIBUTING.md#whats-out-of-scope-for-this-repo) for the two things that are permanently out of scope (an LLM-judge grading path, and anything requiring a network call by default).
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: What are you trying to do that you can't do today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would you want the CLI/library to do instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What have you tried instead?
+      description: Workarounds, other tools, or why this can't be solved outside the tool.

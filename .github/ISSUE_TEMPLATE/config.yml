@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Questions about the full Chival platform
+    url: mailto:partner@chival.ai
+    about: For questions about live model connections, regression history, or the hosted platform (not this CLI repo).
