@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install -e ".[dev]"
+
+      - name: Run test suite
+        run: python -m pytest
+
+      - name: Re-certify every example
+        run: |
+          for ex in off_by_one stale_cache idor; do
+            chival certify --bug examples/$ex/bug.py --fix examples/$ex/fix.py \
+              --tests examples/$ex/test_it.py --category examples --subtype $ex \
+              --sandbox local --suite-dir /tmp/ci_suite
+          done
