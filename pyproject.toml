@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chival-verify"
+version = "0.1.0"
+description = "Mutation-tested, execution-verified regression checks for bug fixes. No LLM judge, no network calls."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Chival" }]
+keywords = ["testing", "mutation-testing", "regression-testing", "pytest", "llm-evaluation", "ci-cd"]
+dependencies = [
+    "pydantic>=2.6",
+    "pytest>=8.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+chival = "chival_verify.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/chival-ai/chival-verify"
+"Chival platform" = "https://chival.ai"
+
+[tool.setuptools]
+packages = ["chival_verify", "chival_verify.verifier"]
+
+[tool.pytest.ini_options]
+# Scoped to tests/ only -- examples/*/test_it.py are sandbox fixtures (they
+# `from solution import ...`, resolved only inside a chival sandbox run, not
+# real standalone pytest tests) and must never be swept up by a bare
+# `pytest` invocation. This section also anchors pytest's rootdir here, so
+# a run from this directory can't walk up and pick up an unrelated parent
+# project's config.
+testpaths = ["tests"]

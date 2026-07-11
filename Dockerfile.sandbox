@@ -1,0 +1,9 @@
+# Optional: prebuild the sandbox image so verification doesn't pip-install
+# pytest on every run.
+#
+#   docker build -f Dockerfile.sandbox -t chival-verify-sandbox .
+#   CHIVAL_IMAGE=chival-verify-sandbox chival doctor --sandbox docker
+#
+FROM python:3.12-slim
+RUN pip install --no-cache-dir "pytest>=8.0"
+WORKDIR /work
